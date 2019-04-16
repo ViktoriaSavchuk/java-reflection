@@ -2,7 +2,10 @@ package reflection;
 
 import reflection.annotation.AfterMethod;
 import reflection.annotation.BeforeMethod;
+import reflection.annotation.Ignore;
 import reflection.annotation.Test;
+
+import java.util.ArrayList;
 
 public class TestClass {
 
@@ -19,6 +22,16 @@ public class TestClass {
     @Test
     public void test2(){
         System.out.println("test 2");
+    }
+
+    @Ignore
+    public void shouldBeIgnoredTest(){
+        System.out.println("it will never be printed");
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shoudThrowExeption() {
+        System.out.println(new ArrayList<>().get(0));
     }
 
     @AfterMethod
